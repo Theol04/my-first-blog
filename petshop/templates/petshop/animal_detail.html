@@ -1,0 +1,28 @@
+{% extends 'petshop/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% if message %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+            <div>
+                <a class="BtnBack" href="/">Back</a>
+            </div>      
+
+    {% else %}
+
+    <div class="page-header">
+        <h1>
+            <p><a href="/">{{ animal.id_animal }} - {{animal.lieu}}</a></p>
+            <p><img src=/{{animal.photo}} alt="" id="pic" width="200" height="200"/><img src=/{{animal.lieu.photo}} alt="" id="pic" width="200" height="200"/></p>
+        </h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+            <h1><p>{{animal.etat}} </p>
+            <b> Changer : </h1></b> {{ form.as_ul }} 
+            <button type="submit" class="btn btn-outline-light">OK</button>
+            <a href="{% url 'animal_list' %}">Back</a>
+        </form>
+    </div>
+    {% endif %}
+ {% endblock %}

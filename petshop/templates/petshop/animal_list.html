@@ -1,0 +1,49 @@
+{% extends 'petshop/base.html' %}
+{% block content %}
+    <div class="Titre">Animaux</div>
+    <div class="ligne">
+        {% for animal in animals %}
+            <div class="">
+                <div class="">
+                    <h2><a href="{% url 'animal_detail' id_animal=animal.id_animal %}">{{ animal.id_animal }}</a></h2>
+                    
+                    
+                </div>
+                <img src=/{{animal.photo}} alt="" id="pic" width="200" height="200"/>
+                <div class="Info">
+                <p>Race : {{ animal.race }}<br>
+                Etat : {{ animal.etat}}<br>
+                Lieu : {{ animal.lieu}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br> 
+    <br> 
+    <br> <br> <br> 
+    <div class="Titre">Equipements</div>
+    <div class="ligne">
+        {% for equipement in equipements %}
+            <div class="animal">
+                <h2><a href="{% url 'equipement_detail' id_equip=equipement.id_equip %}">{{ equipement.id_equip }}</a></h2>
+                <img src=/{{equipement.photo}} alt="" id="pic" width="200" height="200"/>
+                <div class="Info">
+                    <p> Disponibilité : {{ equipement.disponibilite}} </p>
+                        {% if equipement.disponibilite == 'Occupe' %}
+                            {% for animal in animals %}
+                                
+                                {% if animal.lieu.id_equip == equipement.id_equip %}
+                                    Occupé par : {{animal.id_animal}}
+                                {% endif %}   
+                            {% endfor %}
+                        {% endif %}</div>
+                        <br> 
+                        <br>
+            </div>       
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
+

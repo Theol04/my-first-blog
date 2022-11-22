@@ -1,0 +1,34 @@
+{% extends 'petshop/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="page-header">
+        <h1>
+        <p>{{ equipements.id_equip }}</p>
+
+        <img src=/{{equipements.photo}} alt="" id="pic" width="200" height="200"/>
+        </h1>
+    <div class='Info'>
+        <h1>
+        
+        {% if equipements.disponibilite == 'Occupe' %}
+            {% for animal in animals %}
+       
+                {% if animal.lieu.id_equip == equipements.id_equip %}
+                    Occupé par : {{animal.id_animal}}
+
+                    <img src=/{{animal.photo}} alt="" id="pic" width="200" height="200"/>
+                
+                    
+                {% endif %}   
+            {% endfor %}
+        {%else%}
+        {{equipements.disponibilite}}
+        {% endif %}</div></h1>
+
+    
+        <a class="Back" href="{% url 'animal_list' %}">Back</a>
+    </form>
+</div>
+
+{% endblock %}
